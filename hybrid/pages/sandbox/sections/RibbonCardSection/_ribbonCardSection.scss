@@ -1,0 +1,44 @@
+@mixin get-ribbon($color: black, $ribbon-length: 100px, $ribbon-width:$ribbon-length / 5) {
+  $ribbon-thickness: $ribbon-width / 5;
+  position: absolute;
+  width: $ribbon-length;
+  border-bottom: $ribbon-width solid $color;
+  border-left: $ribbon-width solid transparent;
+  border-right: $ribbon-width solid transparent;
+
+  right: 0;
+  top: -$ribbon-width;
+  transform-origin: bottom right;
+  transform: rotate(45deg) translate($ribbon-width, $ribbon-width) translate($ribbon-length / 2, $ribbon-length / 2) translate(0px, -$ribbon-thickness);
+
+  //TODO:
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    //background-color: darken($color, 10);
+    width: 10px;
+    height: 10px;
+  }
+  &:before {
+    //transform: translate(-$ribbon-width, $ribbon-width) rotate(-45deg);
+  }
+  &:after {
+    //transform: translate(-$ribbon-width, $ribbon-width) rotate(-45deg) translate($ribbon-length + 2 * $ribbon-thickness, $ribbon-length + 2 * $ribbon-thickness);
+  }
+}
+
+.stp-funeral-card-wrapper {
+
+  .stp-funeral-card {
+    position: relative;
+    background-color: wheat;
+    padding: $xtra-xtra-large-padding;
+
+    .stp-ribbon {
+      @include get-ribbon(red, 80px, 30px);
+    }
+  }
+
+  //80 30 6 -> 92       ->
+  //100 20 4 -> 95      -> 100 - 4 - 1
+}

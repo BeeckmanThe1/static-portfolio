@@ -1,0 +1,56 @@
+.gc-picture {
+
+	max-width: 100%;
+	max-height: 100%;
+
+
+	&.gc-float {
+		&.gc-float-left {
+			float: left;
+		}
+
+		&.gc-float-right {
+			float: right;
+		}
+	}
+
+
+	&.gc-cropped-picture {
+
+		object-fit: cover;
+
+		&.gc-cropped-picture-center {
+			object-position: calc(50% - 0px) calc(50% - 0px);
+			width: 100%;
+			height: 100%;
+		}
+
+		&.gc-cropped-picture-bottom, &.gc-cropped-picture-top, &.gc-cropped-picture-center.gc-cropped-picture-center-cut-horizontally {
+			width: 100%;
+			height: auto;
+
+			//DOES NOT WORK ON IE
+			&.gc-cropped-picture-bottom {
+				object-position: bottom;
+			}
+
+			//DOES NOT WORK ON IE
+			&.gc-cropped-picture-top {
+				object-position: top;
+			}
+		}
+
+		&.gc-cropped-picture-left, &.gc-cropped-picture-right, &.gc-cropped-picture-center.gc-cropped-picture-center-cut-vertically {
+			height: 100%;
+			width: auto;
+
+			&.gc-cropped-picture-left {
+				object-position: left;
+			}
+
+			&.gc-cropped-picture-right {
+				object-position: right;
+			}
+		}
+	}
+}

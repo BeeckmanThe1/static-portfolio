@@ -1,0 +1,137 @@
+.rs-carousel-wrapper.rs-full-screen-carousel-wrapper {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+}
+
+.rs-carousel.rs-fullscreen-carousel {
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .rs-carousel-slot {
+    position: relative;
+
+    & > * {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .rs-arrow-wrapper:before {
+    color: white;
+  }
+}
+
+.rs-carousel-wrapper:not(.rs-full-screen-carousel-wrapper) {
+  height: 100%;
+
+  .rs-carousel {
+    height: 100%;
+  }
+
+  .rs-carousel-slot {
+    cursor: pointer;
+    height: 100%;
+
+    & > * {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  img {
+    display: block;
+    width: auto;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+
+.rs-carousel {
+  position: relative;
+  overflow: hidden;
+
+  .rs-carousel-viewport {
+    position: relative;
+    height: 100%;
+  }
+
+  .rs-swipe-wrapper {
+    transition: transform 0.4s;
+    height: 100%;
+    display: flex;
+
+    .rs-carousel-slot {
+      position: relative;
+      flex: 1 0 0;
+    }
+  }
+
+  .rs-arrow-wrapper {
+    &:hover {
+      cursor: pointer;
+    }
+
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:before, &:after {
+      color: white;
+      z-index: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.rs-left-arrow-wrapper {
+      left: $small-padding;
+
+      &:before {
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f060";
+      }
+    }
+
+    &.rs-right-arrow-wrapper {
+      right: $xtra-xtra-small-padding;
+
+      &:before {
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f061";
+      }
+    }
+  }
+
+  .rs-fullscreen-images-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,10 @@
+@import './sections/index';
+
+#sandbox-wrapper {
+  padding-right: $medium-padding;
+  section {
+    width: 100%;
+    max-width: $max-width-container;
+    margin: $large-padding auto;
+  }
+}
