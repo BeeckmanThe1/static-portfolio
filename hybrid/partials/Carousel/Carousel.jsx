@@ -1,40 +1,104 @@
-import React, {useEffect} from 'react';
-import classnames from "classnames";
+import React, {useState, useEffect} from 'react';
+import ControlledCarousel from "./ControlledCarousel.jsx";
 
-const Carousel = ({isFullScreenMode, amountToShow, amountToSkip, children, activeIndex, setActiveIndex, imgClickCallback, maxActiveIndex}) => {
+const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFullscreenModeDisabled}) => {
+    const [isFullScreenMode, setIsFullScreenMode] = useState(false);
+    const [activeIndexDefaultCarousel, setActiveIndexDefaultCarousel] = useState(0);
+    const [activeIndexFullScreenCarousel, setActiveIndexFullScreenCarousel] = useState(0);
 
-    const childrenArr = !children?.length ? [children] : children;
-    const newAmountToShow = isFullScreenMode ? 1 : amountToShow;
-    const newAmountToSkip = isFullScreenMode ? 1 : amountToSkip;
+    const getMaxActiveIndex = isFullScreen => (children?.length || 1) - (isFullScreen ? 1 : (amountToShow || 1));   // if no infinite
 
-    const slotPercentageRelativeToViewport = 100 / newAmountToShow;
+    const getContainedActiveIndex = (theoreticActiveIndex) => {
+        const maxActiveIndex = getMaxActiveIndex(true);
+        return theoreticActiveIndex < 0 ? 0 : theoreticActiveIndex > maxActiveIndex ? maxActiveIndex : theoreticActiveIndex
+    };
 
-    const translationValue = `-${activeIndex * slotPercentageRelativeToViewport}%`;
+    const setContainedActiveIndexDefaultCarousel = index => {
+        setActiveIndexDefaultCarousel(getContainedActiveIndex(index));
+    }
 
-    useEffect(() => setActiveIndex(activeIndex), [isFullScreenMode, activeIndex]);
+    const setContainedActiveIndexFullscreenCarousel = (index, isFullScreen) => {
+        setActiveIndexFullScreenCarousel(getContainedActiveIndex(index, isFullScreen));
+    }
 
-    return <div className={classnames('rs-carousel-wrapper', {'rs-full-screen-carousel-wrapper': isFullScreenMode})}>
-        <div className={classnames('rs-carousel', {'rs-fullscreen-carousel': isFullScreenMode})}>
+    const toggleFullScreenMode = () => !isFullscreenModeDisabled && setIsFullScreenMode(prev => !prev);
 
-            <div className={'rs-carousel-viewport'}>
-                <div className={'rs-swipe-wrapper'} style={{transform: `translateX(${translationValue})`}}>
-                    {childrenArr.map((item, index) => <div onClick={() => {
-                        imgClickCallback(index);
-                    }} className={'rs-carousel-slot'} style={{
-                        flexBasis: `${slotPercentageRelativeToViewport}%`
-                    }}>
-                        {item}
-                    </div>)}
-                </div>
-                {activeIndex !== 0 &&
-                <div onClick={() => setActiveIndex(activeIndex - newAmountToSkip)}
-                     className={'rs-arrow-wrapper rs-left-arrow-wrapper'}></div>}
-                {activeIndex !== maxActiveIndex &&
-                <div onClick={() => setActiveIndex(activeIndex + newAmountToSkip)}
-                     className={'rs-arrow-wrapper rs-right-arrow-wrapper'}></div>}
+    const handleImgClickFromDefaultCarousel = activeIndex => {
+        toggleFullScreenMode();
+        setContainedActiveIndexFullscreenCarousel(activeIndex, true);
+    }
+    const handleImgClickFromFullscreenCarousel = () => {
+        toggleFullScreenMode();
+    }
+
+    const sharedCarouselSettings = {
+        amountToShow: amountToShow || 1,
+        amountToSkip: amountToSkip || 1
+    };
+
+    // todo: move somewhere else!
+    function debounced(delay, fn) {
+        let timerId;
+        return function (...args) {
+            if (timerId) {
+                clearTimeout(timerId);
+            }
+            timerId = setTimeout(() => {
+                fn(...args);
+                timerId = null;
+            }, delay);
+        }
+    }
+
+    const keyPressedHandler = e => {
+        if (isFullScreenMode) {
+            if (e.keyCode === 27) {
+                toggleFullScreenMode();
+            } else if (e.keyCode === 37) {
+                setContainedActiveIndexFullscreenCarousel(activeIndexFullScreenCarousel - 1);
+            } else if (e.keyCode === 39) {
+                setContainedActiveIndexFullscreenCarousel(activeIndexFullScreenCarousel + 1);
+            }
+        }
+    }
+
+    const debouncedKeyPressedHandler = debounced(200, keyPressedHandler);
+
+    useEffect(() => {
+        document.addEventListener("keydown", debouncedKeyPressedHandler);
+        return () => {
+            document.removeEventListener("keydown", debouncedKeyPressedHandler);
+        };
+    }, [isFullScreenMode, activeIndexFullScreenCarousel]);
+
+    return <div className={'carousel-with-fullscreen-mode'}>
+
+        <ControlledCarousel {...{
+            ...sharedCarouselSettings, isFullScreenMode: false, activeIndex: activeIndexDefaultCarousel,
+            setActiveIndex: setContainedActiveIndexDefaultCarousel,
+            imgClickCallback: handleImgClickFromDefaultCarousel,
+            maxActiveIndex: getMaxActiveIndex(false)
+        }}>
+            {children}
+        </ControlledCarousel>
+
+        {isFullScreenMode && <>
+            <ControlledCarousel {...{
+                ...sharedCarouselSettings, isFullScreenMode: true, activeIndex: activeIndexFullScreenCarousel,
+                setActiveIndex: setContainedActiveIndexFullscreenCarousel,
+                imgClickCallback: () => {
+                },
+                maxActiveIndex: getMaxActiveIndex(true)
+            }}>
+                {fullScreenImages || children}
+            </ControlledCarousel>
+            <div className={'rs-toggle-fullmode-cta-wrapper'}>
+                <span onClick={toggleFullScreenMode}>❌</span>
             </div>
-        </div>
+        </>
+        }
+
     </div>
-};
+}
 
 export default Carousel;
