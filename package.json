@@ -14,7 +14,8 @@
     "tests": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint --ext .js --ext .jsx client server hybrid"
+    "lint": "eslint --ext .js --ext .jsx client server hybrid",
+    "lint:fix": "eslint --ext .js --ext .jsx client server hybrid --fix"
   },
   "repository": {
     "type": "git",

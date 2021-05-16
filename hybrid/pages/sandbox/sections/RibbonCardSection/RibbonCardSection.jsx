@@ -7,7 +7,7 @@ const RibbonCardSection = () => {
             <h2>Ribbon card</h2>
             ...
         </div>
-    </section>
+    </section>;
 };
 
 export default RibbonCardSection;

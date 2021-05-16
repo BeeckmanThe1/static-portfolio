@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import ControlledCarousel from "./ControlledCarousel.jsx";
-import PropTypes from "prop-types";
+import ControlledCarousel from './ControlledCarousel.jsx';
+import PropTypes from 'prop-types';
 
 const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFullscreenModeDisabled}) => {
     const [isFullScreenMode, setIsFullScreenMode] = useState(false);
@@ -11,26 +11,26 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
 
     const getContainedActiveIndex = (theoreticActiveIndex) => {
         const maxActiveIndex = getMaxActiveIndex(true);
-        return theoreticActiveIndex < 0 ? 0 : theoreticActiveIndex > maxActiveIndex ? maxActiveIndex : theoreticActiveIndex
+        return theoreticActiveIndex < 0 ? 0 : theoreticActiveIndex > maxActiveIndex ? maxActiveIndex : theoreticActiveIndex;
     };
 
     const setContainedActiveIndexDefaultCarousel = index => {
         setActiveIndexDefaultCarousel(getContainedActiveIndex(index));
-    }
+    };
 
     const setContainedActiveIndexFullscreenCarousel = (index, isFullScreen) => {
         setActiveIndexFullScreenCarousel(getContainedActiveIndex(index, isFullScreen));
-    }
+    };
 
     const toggleFullScreenMode = () => !isFullscreenModeDisabled && setIsFullScreenMode(prev => !prev);
 
     const handleImgClickFromDefaultCarousel = activeIndex => {
         toggleFullScreenMode();
         setContainedActiveIndexFullscreenCarousel(activeIndex, true);
-    }
+    };
     const handleImgClickFromFullscreenCarousel = () => {
         toggleFullScreenMode();
-    }
+    };
 
     const sharedCarouselSettings = {
         amountToShow: amountToShow || 1,
@@ -48,7 +48,7 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
                 fn(...args);
                 timerId = null;
             }, delay);
-        }
+        };
     }
 
     const keyPressedHandler = e => {
@@ -61,14 +61,14 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
                 setContainedActiveIndexFullscreenCarousel(activeIndexFullScreenCarousel + 1);
             }
         }
-    }
+    };
 
     const debouncedKeyPressedHandler = debounced(200, keyPressedHandler);
 
     useEffect(() => {
-        document.addEventListener("keydown", debouncedKeyPressedHandler);
+        document.addEventListener('keydown', debouncedKeyPressedHandler);
         return () => {
-            document.removeEventListener("keydown", debouncedKeyPressedHandler);
+            document.removeEventListener('keydown', debouncedKeyPressedHandler);
         };
     }, [isFullScreenMode, activeIndexFullScreenCarousel]);
 
@@ -99,8 +99,8 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
         </>
         }
 
-    </div>
-}
+    </div>;
+};
 
 Carousel.propTypes = {
     /** Is this the principal call to action on the page?*/

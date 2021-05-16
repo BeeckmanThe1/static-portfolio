@@ -11,8 +11,8 @@ const config = {
 
 const getChildren = (amount) => {
     const imgSize = 420;
-    return new Array(amount).fill('').map((curr, index) => <img src={`https://picsum.photos/${imgSize + index}`}/>)
-}
+    return new Array(amount).fill('').map((curr, index) => <img src={`https://picsum.photos/${imgSize + index}`}/>);
+};
 
 export const Carousel = () => {
     const numberOfChildren = number('amount of images', 4, undefined, 'Children settings');
@@ -24,7 +24,7 @@ export const Carousel = () => {
         }}>
             {getChildren(numberOfChildren).map(child => <>{child}</>)}
         </CarouselComponent>
-    </div>
+    </div>;
 };
 
 export default config;

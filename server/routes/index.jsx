@@ -1,6 +1,6 @@
 import React from 'react';
-import {getPageHtml} from "../htmlTemplating/templateProvider";
-import WEBSITE_SETUP from "../WEBSITE_SETUP";
+import {getPageHtml} from '../htmlTemplating/templateProvider';
+import WEBSITE_SETUP from '../WEBSITE_SETUP';
 
 const init = async router => {
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import classnames from "classnames";
+import classnames from 'classnames';
 
 const ControlledCarousel = ({isFullScreenMode, amountToShow, amountToSkip, children, activeIndex, setActiveIndex, imgClickCallback, maxActiveIndex}) => {
 
@@ -28,13 +28,13 @@ const ControlledCarousel = ({isFullScreenMode, amountToShow, amountToSkip, child
                 </div>
                 {activeIndex !== 0 &&
                 <div onClick={() => setActiveIndex(activeIndex - newAmountToSkip)}
-                     className={'rs-arrow-wrapper rs-left-arrow-wrapper'}></div>}
+                    className={'rs-arrow-wrapper rs-left-arrow-wrapper'}></div>}
                 {activeIndex !== maxActiveIndex &&
                 <div onClick={() => setActiveIndex(activeIndex + newAmountToSkip)}
-                     className={'rs-arrow-wrapper rs-right-arrow-wrapper'}></div>}
+                    className={'rs-arrow-wrapper rs-right-arrow-wrapper'}></div>}
             </div>
         </div>
-    </div>
+    </div>;
 };
 
 export default ControlledCarousel;

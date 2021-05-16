@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from "../../../../partials/Carousel/Carousel.jsx";
+import Carousel from '../../../../partials/Carousel/Carousel.jsx';
 
 const CarouselSection = () => {
     return <section className={'stp-carousel-section'}>
@@ -24,7 +24,7 @@ const CarouselSection = () => {
                 <img src={'https://picsum.photos/479'}/>
             </Carousel>
         </div>
-    </section>
+    </section>;
 };
 
 export default CarouselSection;
