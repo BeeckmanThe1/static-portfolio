@@ -15,7 +15,7 @@ export default (PAGE, returnAsHtml) => {
         jsx = <Pages.LandingPage/>;
         break;
     default:
-        return null;
+        jsx = null;
         break;
     }
     return returnAsHtml ? renderToString(jsx) : jsx;

@@ -28,9 +28,6 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
         toggleFullScreenMode();
         setContainedActiveIndexFullscreenCarousel(activeIndex, true);
     };
-    const handleImgClickFromFullscreenCarousel = () => {
-        toggleFullScreenMode();
-    };
 
     const sharedCarouselSettings = {
         amountToShow: amountToShow || 1,

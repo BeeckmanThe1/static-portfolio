@@ -11,7 +11,10 @@ const config = {
 
 const getChildren = (amount) => {
     const imgSize = 420;
-    return new Array(amount).fill('').map((curr, index) => <img src={`https://picsum.photos/${imgSize + index}`}/>);
+    return new Array(amount).fill('').map((curr, index) => {
+        const src = `https://picsum.photos/${imgSize + index}`;
+        return <img key={src} src={src}/>;
+    });
 };
 
 export const Carousel = () => {
