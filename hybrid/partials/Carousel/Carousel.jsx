@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ControlledCarousel from "./ControlledCarousel.jsx";
+import PropTypes from "prop-types";
 
 const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFullscreenModeDisabled}) => {
     const [isFullScreenMode, setIsFullScreenMode] = useState(false);
@@ -71,7 +72,7 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
         };
     }, [isFullScreenMode, activeIndexFullScreenCarousel]);
 
-    return <div className={'carousel-with-fullscreen-mode'}>
+    return <div className={'stp-carousel'}>
 
         <ControlledCarousel {...{
             ...sharedCarouselSettings, isFullScreenMode: false, activeIndex: activeIndexDefaultCarousel,
@@ -100,5 +101,25 @@ const Carousel = ({amountToShow, amountToSkip, fullScreenImages, children, isFul
 
     </div>
 }
+
+Carousel.propTypes = {
+    /** Is this the principal call to action on the page?*/
+    amountToShow: PropTypes.number,
+    amountToSkip: PropTypes.number,
+    isFullscreenModeDisabled: PropTypes.bool,
+    fullScreenImages: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ]),
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
+};
+
+Carousel.defaultProps = {
+    amountToShow: 1,
+    amountToSkip: 1
+};
 
 export default Carousel;
