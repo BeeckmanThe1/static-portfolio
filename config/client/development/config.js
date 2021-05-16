@@ -2,11 +2,11 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const open = require('open');
 const {merge} = require('webpack-merge');
-const clientWebpackCommonConfig = require('../config.common');
+const webpackCommonConfig = require('../config.common');
 
 let isbrowserOpen = false;
 
-module.exports = merge(clientWebpackCommonConfig, {
+module.exports = merge(webpackCommonConfig, {
     mode: 'development',
     devtool: 'source-map',
 

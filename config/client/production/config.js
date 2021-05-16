@@ -1,8 +1,8 @@
 const {merge} = require('webpack-merge');
-const clientWebpackCommonConfig = require('../config.common');
+const webpackCommonConfig = require('../config.common');
 const path = require('path');
 
-module.exports = merge(clientWebpackCommonConfig, {
+module.exports = merge(webpackCommonConfig, {
     mode: 'production',
     devtool: false,
 

@@ -2,9 +2,9 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const open = require('open');
 const { merge } = require('webpack-merge');
-const serverWebpackCommonConfig = require('../config.common');
+const webpackCommonConfig = require('../config.common');
 
-module.exports = merge(serverWebpackCommonConfig, {
+module.exports = merge(webpackCommonConfig, {
     mode: 'development',
     devtool: 'source-map',
     entry: path.resolve(__dirname, '../../../server/app.js'),
