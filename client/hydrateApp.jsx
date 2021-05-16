@@ -1,7 +1,6 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import PageToJsxMapper from "../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx";
-import WEBSITE_SETUP from "../server/WEBSITE_SETUP";
+import PageToJsxMapper from '../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx';
+import WEBSITE_SETUP from '../server/WEBSITE_SETUP';
 
 const hydrateServerRenderedContent = () => {
     try {
@@ -14,5 +13,5 @@ const hydrateServerRenderedContent = () => {
     } catch (err) {
         //TODO
     }
-}
+};
 hydrateServerRenderedContent();

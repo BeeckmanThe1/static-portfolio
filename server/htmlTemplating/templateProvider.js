@@ -1,5 +1,5 @@
 import scriptsProvider from './sriptsProvider';
-import PageToJsxMapper from "../../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx";
+import PageToJsxMapper from '../../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx';
 
 const getHeadTag = PAGE => {
 
@@ -17,8 +17,8 @@ const getHeadTag = PAGE => {
 };
 
 const getPageBody = (html, PAGE) => {
-    return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>${scriptsProvider.getBootstrapAppScript()}`
-}
+    return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>${scriptsProvider.getBootstrapAppScript()}`;
+};
 
 const AddHeaderAndBodyWrapper = (reactHtml, options) => {
     const headTag = getHeadTag(options);

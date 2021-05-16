@@ -1,4 +1,4 @@
-import {getHelloValue} from "../helloWord.util";
+import {getHelloValue} from '../helloWord.util';
 
 describe('Hello world util', () => {
     describe('WHEN I pass nothing', () => {

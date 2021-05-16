@@ -18,4 +18,4 @@ export default {
     get ALL_PAGES() {
         return Object.values(this.PAGES);
     }
-}
+};
