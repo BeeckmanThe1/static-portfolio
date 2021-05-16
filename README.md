@@ -2,13 +2,13 @@
 
 # Goal
 The idea is to play around in a fullstack node-express-react stack:
-- Set up custom webpack setup - DONE
-- Add redux store - TODO
-- Set up story book for generic components/partials
+- ~~Set up custom webpack setup - DONE~~
+- ~~Set up code coverage - DONE~~
+- ~~Set up Linting - DONE~~
+- ~~Set up story book for generic components/partials DONE~~
 - Design some nice (generic) components - PENDING
 - Add redux store - TODO
-- Set up code coverage - DONE
-- Set up Linting - TODO
+- Add redux store - TODO
 - Host this project somewhere - TODO
 
 ## Building the project locally:
