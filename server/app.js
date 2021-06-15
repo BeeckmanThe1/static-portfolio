@@ -11,7 +11,6 @@ app.use(express.static(`./builds/${envPrefix}.build`));
 
 routing.init(app);
 
-
 app.listen(port, err => {
     if (err) {
         console.log(err);

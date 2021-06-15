@@ -17,21 +17,23 @@ const getHeadTag = PAGE => {
 };
 
 const getPageBody = (html, PAGE) => {
-    return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>${scriptsProvider.getBootstrapAppScript()}`;
+    return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>`;
 };
 
-const AddHeaderAndBodyWrapper = (reactHtml, options) => {
-    const headTag = getHeadTag(options);
-    const bodyTag = getPageBody(reactHtml, options);
+const AddHeaderAndBodyWrapper = (reactHtml, pageOptions, store) => {
+    const headTag = getHeadTag(pageOptions);
+    const bodyTag = getPageBody(reactHtml, pageOptions);
 
     return `<!DOCTYPE html>
         	<html lang="nl">
 				${headTag}
 				${bodyTag}
+				${scriptsProvider.getSaveStoreAsWindowObjectScript(store)}
+				${scriptsProvider.getBootstrapAppScript()}
         	</html>`;
 };
 
-export const getPageHtml = PAGE => {
-    const pageHtml = PageToJsxMapper(PAGE, true);
-    return AddHeaderAndBodyWrapper(pageHtml, PAGE);
+export const getPageHtml = (PAGE, store) => {
+    const pageHtml = PageToJsxMapper(PAGE, true, store);
+    return AddHeaderAndBodyWrapper(pageHtml, PAGE, store);
 };

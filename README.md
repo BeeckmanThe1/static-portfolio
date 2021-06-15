@@ -6,9 +6,8 @@ The idea is to play around in a fullstack node-express-react stack:
 - ~~Set up code coverage - DONE~~
 - ~~Set up Linting - DONE~~
 - ~~Set up story book for generic components/partials DONE~~
+- ~~Add redux store~~
 - Design some nice (generic) components - PENDING
-- Add redux store - TODO
-- Add redux store - TODO
 - Host this project somewhere - TODO
 
 ## Building the project locally:
