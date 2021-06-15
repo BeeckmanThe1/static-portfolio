@@ -1,5 +1,6 @@
 import scriptsProvider from './sriptsProvider';
 import PageToJsxMapper from '../../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx';
+import pageStoreProvider from '../../hybrid/store/pageStoreProvider';
 
 const getHeadTag = PAGE => {
 
@@ -17,21 +18,27 @@ const getHeadTag = PAGE => {
 };
 
 const getPageBody = (html, PAGE) => {
-    return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>${scriptsProvider.getBootstrapAppScript()}`;
+    return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>`;
 };
 
-const AddHeaderAndBodyWrapper = (reactHtml, options) => {
-    const headTag = getHeadTag(options);
-    const bodyTag = getPageBody(reactHtml, options);
+const addHeaderAndBodyWrapper = (reactHtml, pageOptions, store) => {
+    const headTag = getHeadTag(pageOptions);
+    const bodyTag = getPageBody(reactHtml, pageOptions);
 
     return `<!DOCTYPE html>
         	<html lang="nl">
 				${headTag}
 				${bodyTag}
+				${scriptsProvider.getSaveStoreAsWindowObjectScript(store)}
+				${scriptsProvider.getBootstrapAppScript()}
         	</html>`;
 };
 
-export const getPageHtml = PAGE => {
-    const pageHtml = PageToJsxMapper(PAGE, true);
-    return AddHeaderAndBodyWrapper(pageHtml, PAGE);
+export const getPageHtml = async (PAGE, store) => {
+    const populatedStore = await pageStoreProvider.populateStore({store, pageInfo: PAGE});
+
+    const reactHtml = PageToJsxMapper(PAGE, true, populatedStore);
+
+    const pageHtml = addHeaderAndBodyWrapper(reactHtml, PAGE, populatedStore);
+    return pageHtml;
 };

@@ -43,7 +43,10 @@ ControlledCarousel.propTypes = {
     amountToShow: PropTypes.number,
     amountToSkip: PropTypes.number,
     activeIndex: PropTypes.number,
-    children: PropTypes.string,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ]).isRequired,
     setActiveIndex: PropTypes.func,
     imgClickCallback: PropTypes.func,
     maxActiveIndex: PropTypes.number

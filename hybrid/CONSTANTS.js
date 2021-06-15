@@ -20,5 +20,6 @@ export default {
             MAX_WIDTH: 2500,    //arbitrary
             NAME: 'XL'
         }
-    }
+    },
+    REDUX_STORE_KEY: 'SERVER_PROCESSED_REDUX_DATA'
 };
