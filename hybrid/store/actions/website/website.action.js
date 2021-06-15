@@ -1,4 +1,4 @@
-import ACTION_TYPES from "../ACTION_TYPES";
+import ACTION_TYPES from '../ACTION_TYPES';
 
 const setProjectConstants = () => {
     return async dispatch => {
@@ -7,8 +7,8 @@ const setProjectConstants = () => {
             payload: {
                 projectName: 'Static portfolio'
             }
-        })
-    }
+        });
+    };
 };
 
 export default {setProjectConstants};

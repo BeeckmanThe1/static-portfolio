@@ -2,7 +2,7 @@ import React from 'react';
 import Pages from '../../pages/index';
 import WEBSITE_SETUP from '../../../server/WEBSITE_SETUP';
 import {renderToString} from 'react-dom/server';
-import {Provider as ReduxProvider} from "react-redux";
+import {Provider as ReduxProvider} from 'react-redux';
 
 const {PAGES} = WEBSITE_SETUP;
 

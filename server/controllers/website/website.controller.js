@@ -1,5 +1,5 @@
-import pageStoreProvider from "../../store/pageStoreProvider";
-import templateProvider from "../../templates/templateProvider";
+import pageStoreProvider from '../../store/pageStoreProvider';
+import templateProvider from '../../templates/templateProvider';
 
 const processPage = async (request, response, options) => {
 

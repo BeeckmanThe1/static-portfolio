@@ -1,5 +1,5 @@
-import createStore from "../../hybrid/store/store";
-import websiteAction from "../../hybrid/store/actions/website/website.action";
+import createStore from '../../hybrid/store/store';
+import websiteAction from '../../hybrid/store/actions/website/website.action';
 
 const populateStore = store => {
     const promises = [];
@@ -7,7 +7,7 @@ const populateStore = store => {
     promises.push(store.dispatch(websiteAction.setProjectConstants()));
 
     return Promise.all(promises).then(() => store);
-}
+};
 
 const createAndPopulateStore = () => {
     const store = createStore();
@@ -17,4 +17,4 @@ const createAndPopulateStore = () => {
 
 export default {
     createAndPopulateStore
-}
+};

@@ -1,6 +1,6 @@
 import {getPageHtml} from '../htmlTemplating/templateProvider';
 import WEBSITE_SETUP from '../WEBSITE_SETUP';
-import websiteStoreProvider from "../../hybrid/store/websiteStoreProvider";
+import websiteStoreProvider from '../../hybrid/store/websiteStoreProvider';
 
 const init = async router => {
 

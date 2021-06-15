@@ -3,7 +3,7 @@ import PageToJsxMapper from '../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx
 import WEBSITE_SETUP from '../server/WEBSITE_SETUP';
 import _ from 'lodash';
 import createStore from '../hybrid/store/store';
-import CONSTANTS from "../hybrid/CONSTANTS";
+import CONSTANTS from '../hybrid/CONSTANTS';
 
 
 const hydrateServerRenderedContent = () => {

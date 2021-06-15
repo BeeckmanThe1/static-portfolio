@@ -9,8 +9,8 @@ const populateStore = (options) => {
     promises.push(store.dispatch(pageAction.setPageInfo(options?.pageInfo)));
 
     return Promise.all(promises).then(() => store);
-}
+};
 
 export default {
     populateStore
-}
+};

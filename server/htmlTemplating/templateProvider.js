@@ -1,6 +1,6 @@
 import scriptsProvider from './sriptsProvider';
 import PageToJsxMapper from '../../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx';
-import pageStoreProvider from "../../hybrid/store/pageStoreProvider";
+import pageStoreProvider from '../../hybrid/store/pageStoreProvider';
 
 const getHeadTag = PAGE => {
 

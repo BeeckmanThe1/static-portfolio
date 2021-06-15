@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 export const setProjectConstants = (state, payload) => {
     const newState = _.cloneDeep(state);
