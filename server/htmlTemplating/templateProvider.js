@@ -1,5 +1,6 @@
 import scriptsProvider from './sriptsProvider';
 import PageToJsxMapper from '../../hybrid/utils/PageToJsxMapper/PageToJsxMapper.jsx';
+import pageStoreProvider from "../../hybrid/store/pageStoreProvider";
 
 const getHeadTag = PAGE => {
 
@@ -20,7 +21,7 @@ const getPageBody = (html, PAGE) => {
     return `<body id="${PAGE?.ID}"><div id="${PAGE?.WRAPPER_ID}">${html}</div></body>`;
 };
 
-const AddHeaderAndBodyWrapper = (reactHtml, pageOptions, store) => {
+const addHeaderAndBodyWrapper = (reactHtml, pageOptions, store) => {
     const headTag = getHeadTag(pageOptions);
     const bodyTag = getPageBody(reactHtml, pageOptions);
 
@@ -33,7 +34,11 @@ const AddHeaderAndBodyWrapper = (reactHtml, pageOptions, store) => {
         	</html>`;
 };
 
-export const getPageHtml = (PAGE, store) => {
-    const pageHtml = PageToJsxMapper(PAGE, true, store);
-    return AddHeaderAndBodyWrapper(pageHtml, PAGE, store);
+export const getPageHtml = async (PAGE, store) => {
+    const populatedStore = await pageStoreProvider.populateStore({store, pageInfo: PAGE});
+
+    const reactHtml = PageToJsxMapper(PAGE, true, populatedStore);
+
+    const pageHtml = addHeaderAndBodyWrapper(reactHtml, PAGE, populatedStore);
+    return pageHtml;
 };

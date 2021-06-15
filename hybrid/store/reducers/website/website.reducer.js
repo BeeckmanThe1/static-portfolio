@@ -1,6 +1,6 @@
 import initialState from "../../initialState";
 import ACTION_TYPES from "../../actions/ACTION_TYPES";
-import {setProjectConstants} from "./navigation/website.navigation.reducer";
+import {setProjectConstants} from "./constants/website.constants.reducer";
 
 export default function (state, action) {
     switch (action.type) {
